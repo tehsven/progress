@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-```ruby
+```
 2.2.1 :001 > p = Progress.new(total:100, yield_interval:10, yield_block:lambda{|res| puts res})
  => #<Progress:0x007fef7ba37290 @total=100, @current=0, @yield_interval=10, @yield_block=#<Proc:0x007fef7ba372e0@(irb):2 (lambda)>>
 2.2.1 :002 > p.update(1)
