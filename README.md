@@ -20,6 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
+Default usage:
 ```
 > p = Progress.to(100)
 > (1..100).each do
@@ -36,6 +37,20 @@ Or install it yourself as:
 {:current=>90, :total=>100, :percent_complete=>90.0, :ops_per_sec=>86621.75168431184, :eta=>2016-06-21 11:30:43 -0700}
 {:current=>100, :total=>100, :percent_complete=>100.0, :ops_per_sec=>84817.64206955048, :eta=>2016-06-21 09:06:46 -0700}
 ```
+
+With non-default options:
+```
+> p = Progress.to(100, interval: 20, block: lambda{|result| puts "I got a result: #{result}"})
+> (1..100).each do
+>   p.inc
+> end
+I got a result: {:current=>20, :total=>100, :percent_complete=>20.0, :ops_per_sec=>999999.9999999999, :eta=>2016-06-21 12:06:37 -0700}
+I got a result: {:current=>40, :total=>100, :percent_complete=>40.0, :ops_per_sec=>184331.79723502306, :eta=>2016-06-21 10:16:52 -0700}
+I got a result: {:current=>60, :total=>100, :percent_complete=>60.0, :ops_per_sec=>159151.19363395227, :eta=>2016-06-21 10:32:09 -0700}
+I got a result: {:current=>80, :total=>100, :percent_complete=>80.0, :ops_per_sec=>169491.52542372883, :eta=>2016-06-21 11:46:42 -0700}
+I got a result: {:current=>100, :total=>100, :percent_complete=>100.0, :ops_per_sec=>161812.29773462785, :eta=>2016-06-21 09:26:21 -0700}
+```
+
 
 The #inc method accepts a value:
 ```
@@ -54,22 +69,6 @@ The #inc method accepts a value:
 {:current=>80, :total=>100, :percent_complete=>80.0, :ops_per_sec=>35634.74387527839, :eta=>2016-06-21 09:40:03 -0700}
 {:current=>90, :total=>100, :percent_complete=>90.0, :ops_per_sec=>38793.10344827586, :eta=>2016-06-21 10:14:58 -0700}
 {:current=>100, :total=>100, :percent_complete=>100.0, :ops_per_sec=>40816.32653061225, :eta=>2016-06-21 09:10:24 -0700}
-```
-
-With non-default options:
-```
-> p = Progress::Tracker.new(total: 100,
-                            current: 10,
-                            yield_interval: 20,
-                            yield_block: lambda{|result| puts "I got a result: #{result}"})
-> (1..100).each do
->   p.inc
-> end
-I got a result: {:current=>20, :total=>100, :percent_complete=>20.0, :ops_per_sec=>1428571.4285714286, :eta=>2016-06-21 12:41:18 -0700}
-I got a result: {:current=>40, :total=>100, :percent_complete=>40.0, :ops_per_sec=>209424.0837696335, :eta=>2016-06-21 10:09:57 -0700}
-I got a result: {:current=>60, :total=>100, :percent_complete=>60.0, :ops_per_sec=>178041.54302670623, :eta=>2016-06-21 10:26:30 -0700}
-I got a result: {:current=>80, :total=>100, :percent_complete=>80.0, :ops_per_sec=>167364.01673640168, :eta=>2016-06-21 11:31:17 -0700}
-I got a result: {:current=>100, :total=>100, :percent_complete=>100.0, :ops_per_sec=>170940.17094017094, :eta=>2016-06-21 09:12:58 -0700}
 ```
 
 ## Development
