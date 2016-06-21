@@ -10,11 +10,7 @@ module Progress
       @yield_block = yield_block
     end
 
-    def increment
-      update(1)
-    end
-
-    def update(delta)
+    def inc(delta = 1)
       @start_time ||= Time.now
       @current += delta
       yield_block.call(results) if should_yield
